@@ -1,0 +1,6 @@
+# 1. Nettoyer les anciennes installations (pour éviter les conflits)
+pip uninstall pyspark -y
+# 2. Installer les bibliothèques Python nécessaires
+pip install confluent-kafka
+pip install psycopg2-binary
+pip install pyspark==3.5.7 sinon(pyspark==3.5.8)

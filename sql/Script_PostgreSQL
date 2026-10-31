@@ -1,0 +1,62 @@
+-- Tables d'état courant (Latest)
+CREATE TABLE IF NOT EXISTS transport_latest (
+    vehicle_id VARCHAR(50) PRIMARY KEY,
+    line VARCHAR(50),
+    city VARCHAR(50),
+    lat DOUBLE PRECISION,
+    lon DOUBLE PRECISION,
+    speed DOUBLE PRECISION,
+    delay_min INTEGER,
+    event_time TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS air_latest (
+    sensor_id VARCHAR(50) PRIMARY KEY,
+    city VARCHAR(50),
+    pm25 DOUBLE PRECISION,
+    co2 DOUBLE PRECISION,
+    event_time TIMESTAMP
+);
+
+-- Tables KPI (Agrégations par minute)
+CREATE TABLE IF NOT EXISTS transport_kpi_1min (
+    city VARCHAR(50),
+    window_start TIMESTAMP,
+    window_end TIMESTAMP,
+    avg_speed DOUBLE PRECISION,
+    late_count BIGINT,
+    PRIMARY KEY (city, window_start)
+);
+
+CREATE TABLE IF NOT EXISTS air_kpi_1min (
+    city VARCHAR(50),
+    window_start TIMESTAMP,
+    window_end TIMESTAMP,
+    avg_pm25 DOUBLE PRECISION,
+    pollution_count BIGINT,
+    PRIMARY KEY (city, window_start)
+);
+
+CREATE TABLE IF NOT EXISTS incidents_kpi_1min (
+    city VARCHAR(50),
+    window_start TIMESTAMP,
+    window_end TIMESTAMP,
+    incident_count BIGINT,
+    max_severity INTEGER,
+    PRIMARY KEY (city, window_start)
+);
+
+SELECT * FROM transport_latest
+ORDER BY event_time DESC;
+
+SELECT * FROM air_latest
+ORDER BY event_time DESC;
+
+SELECT * FROM transport_kpi_1min
+ORDER BY window_start DESC;
+
+SELECT * FROM air_kpi_1min
+ORDER BY window_start DESC;
+
+SELECT * FROM incidents_kpi_1min
+ORDER BY window_start DESC;
