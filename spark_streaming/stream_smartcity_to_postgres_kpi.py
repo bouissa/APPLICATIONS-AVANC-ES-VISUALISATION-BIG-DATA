@@ -14,11 +14,11 @@ from pyspark.sql.functions import row_number
 # PARAMÈTRES DE CONFIGURATION (Variables d'environnement)
 # =========================================================
 
-PG_HOST = os.getenv("PG_HOST", "localhost")
-PG_PORT = int(os.getenv("PG_PORT", "5432"))
+PG_HOST = os.getenv("PG_HOST", "Exemple : localhost")
+PG_PORT = int(os.getenv("PG_PORT", "Exemple : 5433"))
 PG_DATABASE = os.getenv("PG_DATABASE", "projetDataSmartcity")
-PG_USER = os.getenv("PG_USER", "postgres")
-PG_PASSWORD = os.getenv("PG_PASSWORD", "Biway2002")
+PG_USER = os.getenv("PG_USER", "Exemple : nom")
+PG_PASSWORD = os.getenv("PG_PASSWORD", "Exemple : code")
 
 KAFKA_BROKER = os.getenv("KAFKA_BROKER", "127.0.0.1:9092")
 
